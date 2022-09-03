@@ -132,6 +132,26 @@ email.1 = john.doe@domain.tld
 CA = TRUE
 ```
 
+Create a certificate request configured by `openssl.cnf` using private key
+`key.pem` file and outputing request to `req.pem`.
+
+```
+openssl req \
+    -new \
+    -config openssl.cnf \
+    -key key.pem \
+    -out req.pem
+```
+
+Read certificate request from `req.pem`, don't output it but print its
+components.
+
+```
+openssl req \
+    -in req.pem \
+    -noout -text
+```
+
 Generate a new self-signed certificate configured by `openssl.cnf` valid by 365
 days from now, using private key `key.pem` file and outputing certificate to
 `cert.pem`.
