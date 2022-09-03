@@ -94,6 +94,17 @@ openssl rsa \
     -noout -text
 ```
 
+## SSL Client
+
+Retrieve a certificate from `domain.tld` on port `443`. By default, this
+subcommand expect user input and to disable it, use `/dev/null` as _stdin_.
+
+```
+openssl s_client \
+    -connect domain.tld:443 \
+    < /dev/null
+```
+
 ## Tips
 
 OpenSSL is built as command and subcommand.
