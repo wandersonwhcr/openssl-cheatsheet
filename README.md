@@ -211,13 +211,14 @@ openssl x509 \
     -noout -text
 ```
 
-Display subject alternative name extension from certificate in `cert.pem` file.
+Display subject alternative name and basic constraints extensions from
+certificate in `cert.pem` file.
 
 ```
 openssl x509 \
     -in cert.pem \
     -noout \
-    -ext subjectAltName
+    -ext subjectAltName,basicConstraints
 ```
 
 Show fingerprints from certificate in `cert.pem`. This can be used to compare
