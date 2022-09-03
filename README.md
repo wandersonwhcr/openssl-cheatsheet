@@ -125,7 +125,7 @@ EOS
 ```
 
 Generate a new self-signed certificate configured by `openssl.cnf` valid by 365
-from now, using private key `key.pem` file and outputing certificate to
+days from now, using private key `key.pem` file and outputing certificate to
 `cert.pem`.
 
 ```
