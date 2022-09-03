@@ -106,6 +106,7 @@ cat > openssl.cnf <<EOS
 prompt             = no
 distinguished_name = req_distinguished_name
 x509_extensions    = req_x509_extensions
+copy_extensions    = copyall
 
 [req_distinguished_name]
 countryName            = BR
@@ -117,13 +118,18 @@ commonName             = domain.tld
 emailAddress           = john.doe@domain.tld
 
 [req_x509_extensions]
-subjectAltName    = @req_x509_subjectAltName
-#basicConstraints = CA:TRUE
+subjectAltName   = @req_x509_subjectAltName
+#basicConstraints = @req_x509_basicConstraints
 
 [req_x509_subjectAltName]
-DNS.1 = domain.tld
-DNS.2 = *.domain.tld
-EOS
+DNS.1   = domain.tld
+DNS.2   = *.domain.tld
+IP.1    = 127.0.0.1
+IP.2    = 192.168.0.1
+email.1 = john.doe@domain.tld
+
+[req_x509_basicConstraints]
+CA = TRUE
 ```
 
 Generate a new self-signed certificate configured by `openssl.cnf` valid by 365
@@ -303,6 +309,10 @@ openssl subcommand -passin stdin
 * How can you encrypt and decrypt a file?
 * How can you digest (fingerprint) a file?
 * How to connect SSL Client with a mTLS server?
+
+## References
+
+* [OpenSSL x509v3_config](https://www.openssl.org/docs/man1.0.2/man5/x509v3_config.html)
 
 ## License
 
