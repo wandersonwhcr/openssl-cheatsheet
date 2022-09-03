@@ -105,8 +105,8 @@ cat > openssl.cnf <<EOS
 [req]
 prompt             = no
 distinguished_name = req_distinguished_name
-x509_extensions    = req_x509_extensions
-copy_extensions    = copyall
+req_extensions     = req_ext # openssl req
+x509_extensions    = req_ext # openssl req -x509
 
 [req_distinguished_name]
 countryName            = BR
@@ -117,18 +117,18 @@ organizationalUnitName = Tecnologia da Informacao
 commonName             = domain.tld
 emailAddress           = john.doe@domain.tld
 
-[req_x509_extensions]
-subjectAltName   = @req_x509_subjectAltName
-#basicConstraints = @req_x509_basicConstraints
+[req_ext]
+subjectAltName   = @req_ext_subjectAltName
+#basicConstraints = @req_ext_basicConstraints
 
-[req_x509_subjectAltName]
+[req_ext_subjectAltName]
 DNS.1   = domain.tld
 DNS.2   = *.domain.tld
 IP.1    = 127.0.0.1
 IP.2    = 192.168.0.1
 email.1 = john.doe@domain.tld
 
-[req_x509_basicConstraints]
+[req_ext_basicConstraints]
 CA = TRUE
 ```
 
