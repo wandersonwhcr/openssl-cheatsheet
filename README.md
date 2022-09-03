@@ -4,6 +4,16 @@ OpenSSL Commands Cheat Sheet
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
+## Generate RSA Private Key
+
+Generate RSA Private Key with 4096 bits and save as `key.pem`
+
+```
+openssl genrsa \
+    -out key.pem \
+    4096
+```
+
 ## Tips
 
 OpenSSL is built as command and subcommand
