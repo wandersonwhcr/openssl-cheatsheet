@@ -114,6 +114,16 @@ Every argument is defined using a single dash.
 openssl subcommand -argument
 ```
 
+Passwords can be read from many sources.
+
+```
+openssl subcommand -passin pass:password
+openssl subcommand -passin file:password.txt
+openssl subcommand -passin env:PASSWORD
+openssl subcommand -passin fd:3
+openssl subcommand -passin stdin
+```
+
 ## License
 
 This work is licensed under a
