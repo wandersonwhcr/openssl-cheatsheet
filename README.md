@@ -147,6 +147,22 @@ openssl x509 \
     -noout -text
 ```
 
+Print certificate purposes or where it can be used from `cert.pem`.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout -purpose
+```
+
+Show certificate validity only from `cert.pem`.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout -dates
+```
+
 Read certificate from `cert.pem` and show only its subject and issuer.
 
 ```
@@ -174,6 +190,26 @@ openssl x509 \
     -in cert.pem \
     -noout \
     -ext subjectAltName
+```
+
+Show fingerprints from certificate in `cert.pem`. This can be used to compare
+certificates.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -fingerprint -md5
+
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -fingerprint -sha1
+
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -fingerprint -sha256
 ```
 
 ## SSL Client
