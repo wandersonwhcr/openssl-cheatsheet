@@ -97,12 +97,23 @@ openssl rsa \
 ## SSL Client
 
 Retrieve a certificate from `domain.tld` on port `443`. By default, this
-subcommand expect user input and to disable it, use `/dev/null` as _stdin_.
+subcommand expect user input and to disable it, use `/dev/null` as _stdin_. Some
+debugging information is sent to _stderr_ and to avoid output redirect this file
+descriptor to `/dev/null`.
 
 ```
 openssl s_client \
     -connect domain.tld:443 \
-    < /dev/null
+    < /dev/null 2> /dev/null
+```
+
+Retrieve a certificate from `domain.tld` as server name `subdomain.domain.tld`.
+
+```
+openssl s_client \
+    -connect domain.tld:443 \
+    -servername subdomain.domain.tld \
+    < /dev/null 2> /dev/null
 ```
 
 ## Tips
