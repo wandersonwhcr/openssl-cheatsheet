@@ -293,6 +293,16 @@ openssl subcommand -passin fd:3
 openssl subcommand -passin stdin
 ```
 
+## TODO
+
+* How can we work with PKCS12 files?
+* How can you create a CA certificate?
+* How can you create a certificate signing request?
+* How can you sign a certificate with CA and CSR?
+* How can you encrypt and decrypt a file?
+* How can you digest (fingerprint) a file?
+* How to connect SSL Client with a mTLS server?
+
 ## License
 
 This work is licensed under a
