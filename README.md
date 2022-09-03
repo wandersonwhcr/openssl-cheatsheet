@@ -4,6 +4,24 @@ OpenSSL Commands Cheat Sheet
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
+## Tips
+
+OpenSSL is built as command and subcommand.
+
+```
+openssl genrsa
+openssl rsa
+openssl x509
+```
+
+Every subcommand has its own man page.
+
+```
+man openssl-genrsa
+man openssl-rsa
+man openssl-x509
+```
+
 ## License
 
 This work is licensed under a
