@@ -97,7 +97,8 @@ openssl rsa \
 ## Certificate Request
 
 Configure OpenSSL certificate request to disable prompts, distinguished name
-with predefined values and extended with subject alternative names (SANs).
+with predefined values and extended with subject alternative names (SANs). If CA
+certificate is needed uncomment basic constraint.
 
 ```
 cat > openssl.cnf <<EOS
@@ -116,7 +117,8 @@ commonName             = domain.tld
 emailAddress           = john.doe@domain.tld
 
 [req_x509_extensions]
-subjectAltName = @req_x509_subjectAltName
+subjectAltName    = @req_x509_subjectAltName
+#basicConstraints = CA:TRUE
 
 [req_x509_subjectAltName]
 DNS.1 = domain.tld
@@ -296,7 +298,6 @@ openssl subcommand -passin stdin
 ## TODO
 
 * How can we work with PKCS12 files?
-* How can you create a CA certificate?
 * How can you create a certificate signing request?
 * How can you sign a certificate with CA and CSR?
 * How can you encrypt and decrypt a file?
