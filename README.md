@@ -35,15 +35,6 @@ openssl rsa \
     -in key.pem
 ```
 
-Read a encrypted private key from `key.pem` using password from `password.txt`
-file and output it to _stdout_.
-
-```
-openssl rsa \
-    -in key.pem \
-    -passin file:password.txt
-```
-
 Read a private key from _stdin_, don't output it but print its components.
 
 ```
@@ -61,6 +52,28 @@ openssl rsa \
     -inform PEM \
     -out key.des \
     -outform DES
+```
+
+Read a encrypted private key from `key.pem` using password from `password.txt`
+file and output it to _stdout_.
+
+```
+openssl rsa \
+    -in key.pem \
+    -passin file:password.txt
+```
+
+Change a password from encrypted private key in `key-current.pem`, where current
+password is in `password-current.txt` file and new password in
+`password-new.txt` file, saving the new encrypted private key in `key-new.pem`
+file.
+
+```
+openssl rsa \
+    -in key-current.pem \
+    -passin file:password-current.txt \
+    -passout file:password-new.txt \
+    -out key-new.pem
 ```
 
 ## Tips
