@@ -6,20 +6,22 @@ OpenSSL Commands Cheat Sheet
 
 ## Tips
 
-OpenSSL is built as command and subcommand.
+OpenSSL is built as command and subcommand
 
 ```
-openssl genrsa
-openssl rsa
-openssl x509
+openssl subcommand
 ```
 
-Every subcommand has its own man page.
+Every subcommand has its own man page
 
 ```
-man openssl-genrsa
-man openssl-rsa
-man openssl-x509
+man openssl-subcommand
+```
+
+Every argument is defined using a single dash
+
+```
+openssl subcommand -argument
 ```
 
 ## License
