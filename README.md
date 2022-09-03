@@ -96,7 +96,7 @@ openssl rsa \
 
 ## Certificate Request
 
-Configure OpenSSL Certificate Request to disable prompts, distinguished name
+Configure OpenSSL certificate request to disable prompts, distinguished name
 with predefined values and extended with subject alternative names (SANs).
 
 ```
@@ -135,6 +135,45 @@ openssl req \
     -days 365 \
     -key key.pem \
     -out cert.pem
+```
+
+## Certificate
+
+Read certificate from `cert.pem`, don't output it but print its components.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout -text
+```
+
+Read certificate from `cert.pem` and show only its subject and issuer.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -subject -issuer
+```
+
+Read certificate from `cert.pem`, don't output it but print its components,
+disabling public key and signature.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -certopt no_pubkey \
+    -certopt no_sigdump \
+    -noout -text
+```
+
+Display subject alternative name extension from certificate in `cert.pem` file.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -ext subjectAltName
 ```
 
 ## SSL Client
