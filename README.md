@@ -6,10 +6,21 @@ OpenSSL Commands Cheat Sheet
 
 ## Generate RSA Private Key
 
-Generate RSA Private Key with 4096 bits and save as `key.pem`
+Create a private key with 2048 bits and save as `key.pem`
 
 ```
 openssl genrsa \
+    -out key.pem \
+    2048
+```
+
+Create a private key with 4096 bits encrypted with AES 256, retrieving password
+from `password.txt` file and saving it in `key.pem`.
+
+```
+openssl genrsa \
+    -aes256 \
+    -passout file:password.txt \
     -out key.pem \
     4096
 ```
