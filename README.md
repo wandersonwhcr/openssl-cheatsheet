@@ -43,15 +43,15 @@ cat key.pem \
         -noout -text
 ```
 
-Convert a private key from PEM format to DES format. To convert from DES format
+Convert a private key from PEM format to DER format. To convert from DER format
 to PEM format, just swap parameters.
 
 ```
 openssl rsa \
     -in key.pem \
     -inform PEM \
-    -out key.des \
-    -outform DES
+    -out key.der \
+    -outform DER
 ```
 
 Read a encrypted private key from `key.pem` using password from `password.txt`
