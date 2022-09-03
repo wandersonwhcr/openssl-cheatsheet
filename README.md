@@ -76,6 +76,15 @@ openssl rsa \
     -out key-new.pem
 ```
 
+Extract public key from private key `key.pem` saving it in `pubkey.pem`.
+
+```
+openssl rsa \
+    -in key.pem \
+    -pubout \
+    -out pubkey.pem
+```
+
 ## Tips
 
 OpenSSL is built as command and subcommand.
