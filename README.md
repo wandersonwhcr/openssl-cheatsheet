@@ -85,6 +85,15 @@ openssl rsa \
     -out pubkey.pem
 ```
 
+Read a public key from `pubkey.pem`, don't output it but print its components.
+
+```
+openssl rsa \
+    -in pubkey.pem \
+    -pubin \
+    -noout -text
+```
+
 ## Tips
 
 OpenSSL is built as command and subcommand.
