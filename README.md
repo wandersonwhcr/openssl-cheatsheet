@@ -27,12 +27,40 @@ openssl genrsa \
 
 ## RSA
 
-Read a private key from `key.pem` and output it the standard output. This
-command will validate if private key is valid.
+Read a private key from `key.pem` and output it to _stdout_. This command will
+validate if private key is valid.
 
 ```
 openssl rsa \
     -in key.pem
+```
+
+Read a encrypted private key from `key.pem` using password from `password.txt`
+file and output it to _stdout_.
+
+```
+openssl rsa \
+    -in key.pem \
+    -passin file:password.txt
+```
+
+Read a private key from _stdin_, don't output it but print its components.
+
+```
+cat key.pem \
+    | openssl rsa \
+        -noout -text
+```
+
+Convert a private key from PEM format to DES format. To convert from DES format
+to PEM format, just swap parameters.
+
+```
+openssl rsa \
+    -in key.pem \
+    -inform PEM \
+    -out key.des \
+    -outform DES
 ```
 
 ## Tips
