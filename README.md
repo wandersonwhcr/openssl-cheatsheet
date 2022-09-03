@@ -126,6 +126,25 @@ openssl s_client \
         -noout -text
 ```
 
+## Random
+
+Generate 10 pseudo random bytes and display it as base64.
+
+```
+openssl rand \
+    -base64 \
+    10
+```
+
+Generate random string with 40 hexadecimal chars. Each byte is displayed as two
+hexadecimal character, so 20 bytes will display 40 chars.
+
+```
+openssl rand \
+    -hex \
+    20
+```
+
 ## Tips
 
 OpenSSL is built as command and subcommand.
