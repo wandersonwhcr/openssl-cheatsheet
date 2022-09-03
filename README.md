@@ -6,7 +6,7 @@ OpenSSL Commands Cheat Sheet
 
 ## Generate RSA Private Key
 
-Create a private key with 2048 bits and save as `key.pem`
+Create a private key with 2048 bits and save as `key.pem`.
 
 ```
 openssl genrsa \
@@ -25,21 +25,31 @@ openssl genrsa \
     4096
 ```
 
+## RSA
+
+Read a private key from `key.pem` and output it the standard output. This
+command will validate if private key is valid.
+
+```
+openssl rsa \
+    -in key.pem
+```
+
 ## Tips
 
-OpenSSL is built as command and subcommand
+OpenSSL is built as command and subcommand.
 
 ```
 openssl subcommand
 ```
 
-Every subcommand has its own man page
+Every subcommand has its own man page.
 
 ```
 man openssl-subcommand
 ```
 
-Every argument is defined using a single dash
+Every argument is defined using a single dash.
 
 ```
 openssl subcommand -argument
