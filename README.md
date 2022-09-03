@@ -241,6 +241,22 @@ openssl x509 \
     -fingerprint -sha256
 ```
 
+Sign a certificate request from `req.pem` file using certificate authority from
+`cacert.pem` and private key `cakey.pem`, creating a serial `cacert.srl` file
+and output results in `cert.pem` file.
+
+```
+openssl x509 \
+    -req \
+    -extfile openssl.cnf \
+    -extensions req_ext \
+    -in req.pem \
+    -CA cacert.pem \
+    -CAkey cakey.pem \
+    -CAcreateserial \
+    -out cert.pem
+```
+
 ## SSL Client
 
 Retrieve certificate from `domain.tld` on port `443`. By default, this

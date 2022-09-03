@@ -1,4 +1,5 @@
 *.cnf
 *.der
 *.pem
+*.srl
 *.txt
