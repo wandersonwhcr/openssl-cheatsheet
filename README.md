@@ -94,6 +94,49 @@ openssl rsa \
     -noout -text
 ```
 
+## Certificate Request
+
+Configure OpenSSL Certificate Request to disable prompts, distinguished name
+with predefined values and extended with subject alternative names (SANs).
+
+```
+cat > openssl.cnf <<EOS
+[req]
+prompt             = no
+distinguished_name = req_distinguished_name
+x509_extensions    = req_x509_extensions
+
+[req_distinguished_name]
+countryName            = BR
+stateOrProvinceName    = SP
+localityName           = Sao Paulo
+organizationName       = John Doe LTDA
+organizationalUnitName = Tecnologia da Informacao
+commonName             = domain.tld
+emailAddress           = john.doe@domain.tld
+
+[req_x509_extensions]
+subjectAltName = @req_x509_subjectAltName
+
+[req_x509_subjectAltName]
+DNS.1 = domain.tld
+DNS.2 = *.domain.tld
+EOS
+```
+
+Generate a new self-signed certificate configured by `openssl.cnf` valid by 365
+from now, using private key `key.pem` file and outputing certificate to
+`cert.pem`.
+
+```
+openssl req \
+    -x509 \
+    -config openssl.cnf \
+    -days 365 \
+    -key key.pem \
+    -out cert.pem
+```
+
 ## SSL Client
 
 Retrieve certificate from `domain.tld` on port `443`. By default, this

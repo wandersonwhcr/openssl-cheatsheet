@@ -1,3 +1,4 @@
+*.cnf
 *.der
 *.pem
 *.txt
