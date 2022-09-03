@@ -242,8 +242,8 @@ openssl x509 \
 ```
 
 Sign a certificate request from `req.pem` file using certificate authority from
-`cacert.pem` and private key `cakey.pem`, creating a serial `cacert.srl` file
-and output results in `cert.pem` file.
+`cacert.pem` and private key `cakey.pem`, creating a serial `cacert.srl` file if
+it doesn't exist and output results to `cert.pem` file.
 
 ```
 openssl x509 \
