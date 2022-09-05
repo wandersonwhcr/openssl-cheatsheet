@@ -130,6 +130,7 @@ email.1 = john.doe@domain.tld
 
 [req_ext_basicConstraints]
 CA = TRUE
+EOS
 ```
 
 Create a certificate request configured by `openssl.cnf` using private key
