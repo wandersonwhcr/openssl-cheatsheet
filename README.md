@@ -380,6 +380,25 @@ openssl dgst \
     file.txt
 ```
 
+## Encrypt Symmetric
+
+Encode file `file.txt` to Base64 and save results to `file.txt.enc`.
+
+```
+openssl enc \
+    -in file.txt \
+    -base64 \
+    -out file.txt.enc
+```
+
+Decode file `file.txt.enc` from Base64 and output results to _stdout_.
+
+```
+openssl enc \
+    -in file.txt.enc \
+    -base64 -d
+```
+
 ## Random
 
 Generate 10 pseudo random bytes and display it as base64.
