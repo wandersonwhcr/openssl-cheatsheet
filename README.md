@@ -290,6 +290,23 @@ openssl s_client \
         -noout -text
 ```
 
+## PKCS#12
+
+Create PKCS#12 `cert.p12` using private key from `key.pem` file, certificate
+from `cert.pem` and additional certificate authority certificate from
+`cacert.pem` file. Encrypt file using retrieved password from `password.txt`
+file.
+
+```
+openssl pkcs12 \
+    -export \
+    -inkey key.pem \
+    -in cert.pem \
+    -certfile cacert.pem \
+    -out cert.p12 \
+    -passout file:password.txt
+```
+
 ## Random
 
 Generate 10 pseudo random bytes and display it as base64.
