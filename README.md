@@ -455,7 +455,7 @@ openssl subcommand -passin stdin
 
 ## References
 
-* [OpenSSL x509v3_config](https://www.openssl.org/docs/man1.0.2/man5/x509v3_config.html)
+* [OpenSSL x509v3_config](https://www.openssl.org/docs/man3.0/man5/x509v3_config.html)
 
 ## License
 
