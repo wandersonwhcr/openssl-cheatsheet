@@ -1,6 +1,6 @@
 # nginx-mtls
 
-This example shows how to configure Nginx with mTLS to force TLS client
+This example shows how to configure nginx with mTLS to force TLS client
 authentication using client certificate from same certificate authority from
 server certificate.
 
@@ -115,7 +115,30 @@ openssl x509 \
     -out cert.pem
 ```
 
-Start server using Docker Compose.
+Configure nginx server to listen on port 443 with SSL with private key `key.pem`
+and certificate `cert.pem`. Verify client certificate using certificate
+authority `cacert.pem`. Output a JSON with `$HOSTNAME`.
+
+```
+cat > default.conf.template <<EOS
+server {
+    listen 443 ssl;
+
+    ssl_certificate_key    /etc/ssl/private/key.pem;
+    ssl_certificate        /etc/ssl/certs/cert.pem;
+    ssl_client_certificate /etc/ssl/certs/cacert.pem;
+    ssl_verify_client      on;
+
+    default_type application/json;
+
+    return 200 '{"hostname": "${HOSTNAME}"}';
+}
+EOS
+```
+
+Start server using Docker Compose adding volumes to mount private key `key.pem`,
+server certificate `cert.pem`, certificate authority `cacert.pem` and nginx
+config template `default.conf.template`.
 
 ```
 docker-compose up \
