@@ -4,8 +4,9 @@ services:
   nginx:
     image: "nginx:1.23-alpine"
     volumes:
-      - "./default.conf.template:/etc/nginx/templates/default.conf.template"
-      - "./cert.pem:/etc/ssl/certs/cert.pem"
-      - "./key.pem:/etc/ssl/private/key.pem"
+      - "./default.conf.template:/etc/nginx/templates/default.conf.template:ro"
+      - "./cacert.pem:/etc/ssl/certs/cacert.pem:ro"
+      - "./cert.pem:/etc/ssl/certs/cert.pem:ro"
+      - "./key.pem:/etc/ssl/private/key.pem:ro"
     ports:
       - "443:443"

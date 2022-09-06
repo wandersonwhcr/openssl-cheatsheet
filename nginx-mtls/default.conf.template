@@ -1,8 +1,10 @@
 server {
     listen 443 ssl;
 
-    ssl_certificate     /etc/ssl/certs/cert.pem;
-    ssl_certificate_key /etc/ssl/private/key.pem;
+    ssl_certificate_key    /etc/ssl/private/key.pem;
+    ssl_certificate        /etc/ssl/certs/cert.pem;
+    ssl_client_certificate /etc/ssl/certs/cacert.pem;
+    ssl_verify_client      on;
 
     default_type application/json;
 

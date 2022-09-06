@@ -93,9 +93,62 @@ docker-compose up \
     --detach
 ```
 
+## Client Certificate
+
+```
+openssl genpkey \
+    -algorithm RSA \
+    -pkeyopt rsa_keygen_bits:2048 \
+    -out clkey.pem
+```
+
+```
+cat > openssl-cl.cnf <<EOS
+[req]
+prompt             = no
+distinguished_name = req_distinguished_name
+
+[req_distinguished_name]
+countryName         = BR
+stateOrProvinceName = SP
+localityName        = Sao Paulo
+organizationName    = My Client
+commonName          = myclient.com
+
+[req_ext]
+subjectAltName = @req_ext_subjectAltName
+
+[req_ext_subjectAltName]
+DNS.1 = myclient.com
+EOS
+```
+
+```
+openssl req \
+    -new \
+    -config openssl-cl.cnf \
+    -key clkey.pem \
+    -out clreq.pem
+```
+
+```
+openssl x509 \
+    -req \
+    -extfile openssl-cl.cnf \
+    -extensions req_ext \
+    -in clreq.pem \
+    -CA cacert.pem \
+    -CAkey cakey.pem \
+    -CAcreateserial \
+    -days 365 \
+    -out clcert.pem
+```
+
 ```
 curl https://mycompany.com \
     --include \
     --cacert ./cacert.pem \
+    --key ./clkey.pem \
+    --cert ./clcert.pem \
     --resolve mycompany.com:443:127.0.0.1
 ```
