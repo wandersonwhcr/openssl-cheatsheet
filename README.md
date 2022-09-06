@@ -401,10 +401,10 @@ openssl subcommand -passin stdin
 
 ## TODO
 
-* How can we work with PKCS12 files?
 * How can you encrypt and decrypt a file?
 * How can you digest (fingerprint) a file?
 * How to connect SSL Client with a mTLS server?
+* How to read an encrypt private key?
 
 ## References
 
