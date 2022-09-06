@@ -361,6 +361,25 @@ openssl pkcs12 \
     -nokeys
 ```
 
+## Digest
+
+Create a MD5 message digest for `file.txt` file.
+
+```
+openssl dgst \
+    -md5 \
+    file.txt
+```
+
+Create a SHA256 message digest for `file.txt` and output results in a format to
+use with `sha256sum`.
+
+```
+openssl dgst \
+    -sha256 -r \
+    file.txt
+```
+
 ## Random
 
 Generate 10 pseudo random bytes and display it as base64.
@@ -413,7 +432,6 @@ openssl subcommand -passin stdin
 ## TODO
 
 * How can you encrypt and decrypt a file?
-* How can you digest (fingerprint) a file?
 * How to connect SSL Client with a mTLS server?
 
 ## References
