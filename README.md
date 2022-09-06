@@ -307,6 +307,49 @@ openssl pkcs12 \
     -passout file:password.txt
 ```
 
+Read a PKCS#12 `cert.p12` file, decrypt using password from `password.txt` file
+and output results to _stdout_ without encrypt private key.
+
+```
+openssl pkcs12 \
+    -in cert.p12 \
+    -passin file:password.txt \
+    -nodes
+```
+
+Read a PKCS#12 `cert.p12` file, decrypt using password from `password.txt` file
+and output to _stdout_ only the private key without encryption.
+
+```
+openssl pkcs12 \
+    -in cert.p12 \
+    -passin file:password.txt \
+    -nodes \
+    -nocerts
+```
+
+Read a PKCS#12 `cert.p12` file, decrypt using password from `password.txt` file
+and output to _stdout_ only client certificates.
+
+```
+openssl pkcs12 \
+    -in cert.p12 \
+    -passin file:password.txt \
+    -clcerts \
+    -nokeys
+```
+
+Read a PKCS#12 `cert.p12` file, decrypt using password from `password.txt` file
+and output to _stdout_ only certificate authority certificates.
+
+```
+openssl pkcs12 \
+    -in cert.p12 \
+    -passin file:password.txt \
+    -cacerts \
+    -nokeys
+```
+
 ## Random
 
 Generate 10 pseudo random bytes and display it as base64.
