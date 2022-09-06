@@ -4,34 +4,35 @@ OpenSSL Commands Cheat Sheet
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-## Generate RSA Private Key
+## Generate Private Key
 
-Create a private key with 2048 bits and save as `key.pem`.
-
-```
-openssl genrsa \
-    -out key.pem \
-    2048
-```
-
-Create a private key with 4096 bits encrypted with AES 256, retrieving password
-from `password.txt` file and saving it in `key.pem`.
+Create a private key using RSA with 2048 bits and save as `key.pem`.
 
 ```
-openssl genrsa \
+openssl genpkey \
+    -algorithm RSA \
+    -pkeyopt rsa_keygen_bits:2048 \
+    -out key.pem
+```
+
+Create a private key using RSA with 4096 bits encrypted with AES 256, retrieving
+password from `password.txt` file and saving it in `key.pem`.
+
+```
+openssl genpkey \
+    -algorithm RSA \
+    -pkeyopt rsa_keygen_bits:4096 \
     -aes256 \
-    -passout file:password.txt \
-    -out key.pem \
-    4096
+    -pass file:password.txt \
+    -out key.pem
 ```
 
-## RSA
+## Private Key
 
-Read a private key from `key.pem` and output it to _stdout_. This command will
-validate if private key is valid.
+Read a private key from `key.pem` and output it to _stdout_.
 
 ```
-openssl rsa \
+openssl pkey \
     -in key.pem
 ```
 
@@ -39,7 +40,7 @@ Read a private key from _stdin_, don't output it but print its components.
 
 ```
 cat key.pem \
-    | openssl rsa \
+    | openssl pkey \
         -noout -text
 ```
 
@@ -47,39 +48,49 @@ Convert a private key from PEM format to DER format. To convert from DER format
 to PEM format, just swap parameters.
 
 ```
-openssl rsa \
+openssl pkey \
     -in key.pem \
     -inform PEM \
     -out key.der \
     -outform DER
 ```
 
-Read a encrypted private key from `key.pem` using password from `password.txt`
+Create an encrypted private key with AES256 from `key.pem` using password from
+`password.txt` and output it to _stdout_.
+
+```
+openssl pkey \
+    -in key.pem \
+    -aes256 \
+    -passout file:password.txt
+```
+
+Read an encrypted private key from `key.pem` using password from `password.txt`
 file and output it to _stdout_.
 
 ```
-openssl rsa \
+openssl pkey \
     -in key.pem \
     -passin file:password.txt
 ```
 
-Change a password from encrypted private key in `key-current.pem`, where current
-password is in `password-current.txt` file and new password in
-`password-new.txt` file, saving the new encrypted private key in `key-new.pem`
-file.
+Change a password from encrypted private key in `key.pem`, where current
+password is in `password.txt` file and new password in `passwordout.txt` file,
+saving the new encrypted private key with AES256 in `keyout.pem` file.
 
 ```
-openssl rsa \
-    -in key-current.pem \
-    -passin file:password-current.txt \
-    -passout file:password-new.txt \
-    -out key-new.pem
+openssl pkey \
+    -in key.pem \
+    -passin file:password.txt \
+    -aes256 \
+    -passout file:passwordout.txt \
+    -out keyout.pem
 ```
 
 Extract public key from private key `key.pem` saving it in `pubkey.pem`.
 
 ```
-openssl rsa \
+openssl pkey \
     -in key.pem \
     -pubout \
     -out pubkey.pem
@@ -88,7 +99,7 @@ openssl rsa \
 Read a public key from `pubkey.pem`, don't output it but print its components.
 
 ```
-openssl rsa \
+openssl pkey \
     -in pubkey.pem \
     -pubin \
     -noout -text
@@ -404,7 +415,6 @@ openssl subcommand -passin stdin
 * How can you encrypt and decrypt a file?
 * How can you digest (fingerprint) a file?
 * How to connect SSL Client with a mTLS server?
-* How to read an encrypt private key?
 
 ## References
 
