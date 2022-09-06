@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: "nginx:1.23-alpine"
+    volumes:
+      - "./default.conf.template:/etc/nginx/templates/default.conf.template"
+      - "./cert.pem:/etc/ssl/certs/cert.pem"
+      - "./key.pem:/etc/ssl/private/key.pem"
+    ports:
+      - "443:443"

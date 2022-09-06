@@ -87,3 +87,15 @@ openssl x509 \
     -days 365 \
     -out cert.pem
 ```
+
+```
+docker-compose up \
+    --detach
+```
+
+```
+curl https://mycompany.com \
+    --include \
+    --cacert ./cacert.pem \
+    --resolve mycompany.com:443:127.0.0.1
+```
