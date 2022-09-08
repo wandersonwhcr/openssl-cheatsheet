@@ -15,6 +15,12 @@ openssl genpkey \
     -out key.pem
 ```
 
+```
+openssl genrsa \
+    -out key.pem \
+    2048
+```
+
 Create a private key using RSA with 4096 bits encrypted with AES 256, retrieving
 password from `password.txt` file and saving it in `key.pem`.
 
@@ -27,12 +33,25 @@ openssl genpkey \
     -out key.pem
 ```
 
+```
+openssl genrsa \
+    -aes256 \
+    -passout file:password.txt \
+    -out key.pem \
+    4096
+```
+
 ## Private Key
 
 Read a private key from `key.pem` and output it to _stdout_.
 
 ```
 openssl pkey \
+    -in key.pem
+```
+
+```
+openssl rsa \
     -in key.pem
 ```
 
@@ -44,11 +63,25 @@ cat key.pem \
         -noout -text
 ```
 
+```
+cat key.pem \
+    | openssl rsa \
+        -noout -text
+```
+
 Convert a private key from PEM format to DER format. To convert from DER format
 to PEM format, just swap parameters.
 
 ```
 openssl pkey \
+    -in key.pem \
+    -inform PEM \
+    -out key.der \
+    -outform DER
+```
+
+```
+openssl rsa \
     -in key.pem \
     -inform PEM \
     -out key.der \
@@ -65,11 +98,24 @@ openssl pkey \
     -passout file:password.txt
 ```
 
+```
+openssl rsa \
+    -in key.pem \
+    -aes256 \
+    -passout file:password.txt
+```
+
 Read an encrypted private key from `key.pem` using password from `password.txt`
 file and output it to _stdout_.
 
 ```
 openssl pkey \
+    -in key.pem \
+    -passin file:password.txt
+```
+
+```
+openssl rsa \
     -in key.pem \
     -passin file:password.txt
 ```
@@ -87,6 +133,15 @@ openssl pkey \
     -out keyout.pem
 ```
 
+```
+openssl rsa \
+    -in key.pem \
+    -passin file:password.txt \
+    -aes256 \
+    -passout file:passwordout.txt \
+    -out keyout.pem
+```
+
 Extract public key from private key `key.pem` saving it in `pubkey.pem`.
 
 ```
@@ -96,10 +151,24 @@ openssl pkey \
     -out pubkey.pem
 ```
 
+```
+openssl rsa \
+    -in key.pem \
+    -pubout \
+    -out pubkey.pem
+```
+
 Read a public key from `pubkey.pem`, don't output it but print its components.
 
 ```
 openssl pkey \
+    -in pubkey.pem \
+    -pubin \
+    -noout -text
+```
+
+```
+openssl rsa \
     -in pubkey.pem \
     -pubin \
     -noout -text
