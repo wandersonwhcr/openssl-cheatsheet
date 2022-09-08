@@ -334,7 +334,8 @@ openssl x509 \
 
 Sign a certificate request from `req.pem` file using certificate authority from
 `cacert.pem` and private key `cakey.pem`, creating a serial `cacert.srl` file if
-it doesn't exist and output results to `cert.pem` file.
+it doesn't exist and output results to `cert.pem` file. This subcommand acts
+like a "mini CA".
 
 ```
 openssl x509 \
