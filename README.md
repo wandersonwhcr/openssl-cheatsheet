@@ -468,6 +468,43 @@ openssl enc \
     -base64 -d
 ```
 
+## Encrypt Asymmetric
+
+Using RSA, encrypt a `file.txt` file using the public key `pubkey.pem` and
+output encrypted content to `file.txt.enc` file.
+
+```
+openssl rsautl \
+    -encrypt \
+    -in file.txt \
+    -inkey pubkey.pem \
+    -pubin \
+    -out file.txt.enc
+```
+
+Using RSA, decrypt a `file.txt.enc` file using the private key `key.pem` and
+output raw content to `file.txt` file.
+
+```
+openssl rsautl \
+    -decrypt \
+    -in file.txt.enc \
+    -inkey key.pem \
+    -out file.txt
+```
+
+Encrypt a `file.txt` file using certificate `cert.pem` that contains a RSA
+public key and output encrypted content to `file.txt.enc`.
+
+```
+openssl rsautl \
+    -encrypt \
+    -in file.txt \
+    -inkey cert.pem \
+    -certin \
+    -out file.txt.enc
+```
+
 ## Random
 
 Generate 10 pseudo random bytes and display it as base64.
@@ -529,7 +566,6 @@ openssl s_client \
 
 ## TODO
 
-* How can you encrypt and decrypt a file?
 * How to connect SSL Client with a mTLS server?
 
 ## References
