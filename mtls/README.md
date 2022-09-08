@@ -1,4 +1,4 @@
-# nginx-mtls
+# mtls
 
 This example shows how to configure nginx with mTLS to force TLS client
 authentication using client certificate from same certificate authority from
