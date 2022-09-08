@@ -448,6 +448,16 @@ openssl subcommand -passin fd:3
 openssl subcommand -passin stdin
 ```
 
+OpenSSL can be used to view a HTTPS certificate.
+
+```
+openssl s_client \
+    -connect domain.tld:443 \
+    -servername subdomain.domain.tld \
+    < /dev/null 2> /dev/null \
+    | openssl x509 -noout -text
+```
+
 ## TODO
 
 * How can you encrypt and decrypt a file?
