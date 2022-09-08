@@ -574,10 +574,6 @@ openssl s_client \
     | openssl x509 -noout -text
 ```
 
-## TODO
-
-* How to connect SSL Client with a mTLS server?
-
 ## References
 
 * [OpenSSL x509v3_config](https://www.openssl.org/docs/man3.0/man5/x509v3_config.html)
