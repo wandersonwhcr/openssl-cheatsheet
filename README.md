@@ -322,6 +322,16 @@ openssl x509 \
     -fingerprint -sha256
 ```
 
+Extract from certificate `cert.pem` its public key and save to `pubkey.pem`.
+
+```
+openssl x509 \
+    -in cert.pem \
+    -noout \
+    -pubkey \
+    -out pubkey.pem
+```
+
 Sign a certificate request from `req.pem` file using certificate authority from
 `cacert.pem` and private key `cakey.pem`, creating a serial `cacert.srl` file if
 it doesn't exist and output results to `cert.pem` file.
