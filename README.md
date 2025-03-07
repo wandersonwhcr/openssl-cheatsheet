@@ -349,6 +349,15 @@ openssl x509 \
     -out cert.pem
 ```
 
+Check if a certificate `cert.pem` is issued by a certificate authority
+`cacert.pem`.
+
+```
+openssl verify \
+    -CAfile cacert.pem \
+    cert.pem
+```
+
 ## SSL Client
 
 Retrieve certificate from `domain.tld` on port `443`. By default, this
