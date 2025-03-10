@@ -417,6 +417,18 @@ openssl pkcs12 \
     -nodes
 ```
 
+Read a PKCS#12 `cert.p12` file with legacy support (RC2-40), decrypt using
+password from `password.txt` file and output results to _stdout_ without encrypt
+private key.
+
+```
+openssl pkcs12 \
+    -in cert.p12 \
+    -legacy \
+    -passin file:password.txt \
+    -nodes
+```
+
 Read a PKCS#12 `cert.p12` file, decrypt using password from `password.txt` file
 and output to _stdout_ only the private key without encryption.
 
